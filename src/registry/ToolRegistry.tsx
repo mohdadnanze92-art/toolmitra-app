@@ -167,20 +167,120 @@ const REGISTRY_ENTRIES: Record<string, ToolRegistryEntry> = {
     },
   },
 
-  'youtube-title-generator': {
+    'youtube-title-generator': {
     id: 'youtube-title-generator',
-    title: 'YouTube Title Generator',
+    title: 'YouTube Viral Metadata & Hook Generator',
     category: 'social',
-    emoji: '📺',
-    description: 'Generate high-CTR, viral, and SEO-optimized YouTube video titles that attract clicks and boost views.',
+    emoji: '🎬',
+    description: 'Generate high-CTR titles, viral 3-second retention hooks, and SEO-ranked tags instantly.',
     tag: 'AI Powered',
     views: 'Free Online',
-    render: (props) => <YoutubeTitleGeneratorModal onClose={props.onClose} />,
-    htmlTemplate: `<div id="tool-youtube-title-generator" class="tool-content"><h3>YouTube Title Generator</h3></div>`,
+    htmlTemplate: `
+      <div style="max-width: 650px; margin: 0 auto; color: #fff; padding: 10px;">
+        <label style="font-size: 13px; color: #94a3b8; font-weight: 600;">VIDEO TOPIC / NICHE</label>
+        <input type="text" id="yt-in-topic" placeholder="e.g., How to start trading in 2026, iPhone 16 review, Gain weight fast" style="width: 100%; padding: 12px; margin: 8px 0 16px 0; border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: #fff; outline: none;" />
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
+          <div>
+            <label style="font-size: 13px; color: #94a3b8;">STYLE / TONE</label>
+            <select id="yt-in-tone" style="width: 100%; padding: 10px; margin-top: 6px; border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: #fff;">
+              <option value="viral">🔥 High-CTR & Viral</option>
+              <option value="guide">📚 Educational Guide</option>
+              <option value="case-study">💼 Story & Case Study</option>
+              <option value="shorts">⚡ Shorts & Reels Hook</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size: 13px; color: #94a3b8;">AUDIENCE</label>
+            <select id="yt-in-aud" style="width: 100%; padding: 10px; margin-top: 6px; border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: #fff;">
+              <option value="beginners">Beginners / Students</option>
+              <option value="general">Mass Audience</option>
+              <option value="creators">Creators / Pros</option>
+            </select>
+          </div>
+        </div>
+
+        <button id="yt-gen-btn" style="width: 100%; padding: 12px; background: #ef4444; color: #fff; border: none; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer; transition: 0.2s;">
+          ⚡ Generate Viral Metadata
+        </button>
+
+        <div id="yt-results-box" style="display: none; margin-top: 24px;">
+          <div style="background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 16px; margin-bottom: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="color: #38bdf8; font-weight: bold; font-size: 13px;">🎯 HIGH-CTR TITLES</span>
+              <button id="cp-t" style="background: #334155; color: #38bdf8; border: none; padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer;">Copy</button>
+            </div>
+            <div id="out-t" style="font-size: 13px; line-height: 1.8; color: #f8fafc; white-space: pre-line;"></div>
+          </div>
+
+          <div style="background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 16px; margin-bottom: 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="color: #f59e0b; font-weight: bold; font-size: 13px;">⚡ 3-SEC RETENTION HOOKS</span>
+              <button id="cp-h" style="background: #334155; color: #f59e0b; border: none; padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer;">Copy</button>
+            </div>
+            <div id="out-h" style="font-size: 13px; line-height: 1.8; color: #f8fafc; white-space: pre-line;"></div>
+          </div>
+
+          <div style="background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="color: #10b981; font-weight: bold; font-size: 13px;">🏷️ SEO TAGS (COMMA SEPARATED)</span>
+              <button id="cp-tag" style="background: #334155; color: #10b981; border: none; padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer;">Copy</button>
+            </div>
+            <div id="out-tag" style="font-size: 12px; line-height: 1.6; color: #cbd5e1; background: #0f172a; padding: 10px; border-radius: 6px; word-break: break-all;"></div>
+          </div>
+        </div>
+      </div>
+    `,
     init: () => {
-      console.log('[ToolRegistry] Initialized YouTube Title Generator');
+      const btn = document.getElementById('yt-gen-btn');
+      if (!btn) return;
+
+      btn.onclick = () => {
+        const topic = (document.getElementById('yt-in-topic') as HTMLInputElement)?.value.trim() || 'Online Strategy';
+        
+        const titles = [
+          `1. I Tried ${topic} for 30 Days (Real Results)`,
+          `2. Why 99% Fail at ${topic} (And How to Fix It)`,
+          `3. The Complete 2026 Guide to ${topic}`,
+          `4. Stop Doing ${topic} Like This! (Big Mistake)`,
+          `5. How to Master ${topic} in 10 Minutes a Day`
+        ];
+
+        const hooks = [
+          `• "If you want to master ${topic}, stop making this one rookie mistake..."`,
+          `• "Nobody tells you this brutal truth about ${topic}..."`,
+          `• "Here is the exact step-by-step blueprint for ${topic} in 2026..."`
+        ];
+
+        const raw = topic.toLowerCase();
+        const tags = `${raw}, ${raw} tutorial, ${raw} guide 2026, how to do ${raw}, best ${raw} tips, viral video growth`;
+
+        (document.getElementById('out-t') as HTMLElement).innerText = titles.join('\\n');
+        (document.getElementById('out-h') as HTMLElement).innerText = hooks.join('\\n');
+        (document.getElementById('out-tag') as HTMLElement).innerText = tags;
+        (document.getElementById('yt-results-box') as HTMLElement).style.display = 'block';
+      };
+
+      const bindCopy = (btnId: string, outId: string) => {
+        const cBtn = document.getElementById(btnId);
+        if (cBtn) {
+          cBtn.onclick = () => {
+            const text = (document.getElementById(outId) as HTMLElement)?.innerText;
+            if (text) {
+              navigator.clipboard.writeText(text);
+              cBtn.innerText = 'Copied!';
+              setTimeout(() => { cBtn.innerText = 'Copy'; }, 2000);
+            }
+          };
+        }
+      };
+
+      bindCopy('cp-t', 'out-t');
+      bindCopy('cp-h', 'out-h');
+      bindCopy('cp-tag', 'out-tag');
     },
   },
+    
 
   'image-compressor': {
     id: 'image-compressor',

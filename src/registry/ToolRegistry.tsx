@@ -168,7 +168,7 @@ const REGISTRY_ENTRIES: Record<string, ToolRegistryEntry> = {
   },
 
   
-  'youtube-title-generator': {
+      'youtube-title-generator': {
     id: 'youtube-title-generator',
     title: 'YouTube Viral Metadata & Hook Generator',
     category: 'social',
@@ -239,9 +239,7 @@ const REGISTRY_ENTRIES: Record<string, ToolRegistryEntry> = {
         if (outTags) outTags.innerText = tags;
         if (box) box.style.display = 'block';
       };
-    },
-  },
-    
+      
 
         
     
@@ -261,8 +259,7 @@ const REGISTRY_ENTRIES: Record<string, ToolRegistryEntry> = {
             <div style="    htmlTemplate: `<div id="tool-image-compressor" class="tool-content"><h3>Image Compressor</h3></div>`,
     init: () => {
       console.log('[ToolRegistry] Initialized Image Compressor');
-    },
-  },
+
 
   'image-resizer': {
     id: 'image-resizer',

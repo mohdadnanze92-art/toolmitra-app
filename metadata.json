@@ -1,0 +1,6 @@
+{
+  "name": "ToolMitra AI",
+  "description": "Free AI & Online Tools - Har Kaam Ka Smart Online Tool. Mobile-first hub for AI prompt generation, photo tools, calculators, social media utilities, and language tools.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

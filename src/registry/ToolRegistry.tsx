@@ -167,7 +167,7 @@ const REGISTRY_ENTRIES: Record<string, ToolRegistryEntry> = {
     },
   },
 
-    'youtube-title-generator': {
+  
     id: 'youtube-title-generator',
     title: 'YouTube Viral Metadata & Hook Generator',
     category: 'social',
@@ -179,7 +179,7 @@ const REGISTRY_ENTRIES: Record<string, ToolRegistryEntry> = {
       <div style="max-width: 650px; margin: 0 auto; color: #fff; padding: 10px;">
         <label style="font-size: 13px; color: #94a3b8; font-weight: 600;">VIDEO TOPIC / NICHE</label>
         <input type="text" id="yt-in-topic" placeholder="e.g., How to start trading in 2026, iPhone 16 review, Gain weight fast" style="width: 100%; padding: 12px; margin: 8px 0 16px 0; border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: #fff; outline: none;" />
-
+        
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
           <div>
             <label style="font-size: 13px; color: #94a3b8;">STYLE / TONE</label>
